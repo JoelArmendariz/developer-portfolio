@@ -6,10 +6,12 @@ export default function ZoomWrapper({
   children,
   targetPosition,
   targetRotation,
+  setShowOrbitalControls,
 }: {
   children: JSX.Element;
   targetPosition: readonly [number, number, number];
   targetRotation?: readonly [number, number, number];
+  setShowOrbitalControls?: (show: boolean) => void;
 }) {
   const camera = useThree((state) => state.camera);
 
@@ -18,6 +20,7 @@ export default function ZoomWrapper({
   });
 
   const handleFocus = () => {
+    setShowOrbitalControls?.(false);
     new TWEEN.Tween(camera.position)
       .to(
         {
@@ -42,36 +45,36 @@ export default function ZoomWrapper({
     }
   };
 
-  const handleUnfocus = () => {
-    new TWEEN.Tween(camera.position)
-      .to(
-        {
-          x: POSITIONS.DEFAULT_CAMERA[0],
-          y: POSITIONS.DEFAULT_CAMERA[1],
-          z: POSITIONS.DEFAULT_CAMERA[2],
-        },
-        1000
-      )
-      .start();
-    new TWEEN.Tween(camera.rotation)
-      .to(
-        {
-          x: ROTATIONS.DEFAULT_CAMERA[0],
-          y: ROTATIONS.DEFAULT_CAMERA[1],
-          z: ROTATIONS.DEFAULT_CAMERA[2],
-        },
-        1000
-      )
-      .start();
-  };
-
+  // const handleUnfocus = () => {
+  //   setShowOrbitalControls?.(true);
+  //   new TWEEN.Tween(camera.position)
+  //     .to(
+  //       {
+  //         x: POSITIONS.DEFAULT_CAMERA[0],
+  //         y: POSITIONS.DEFAULT_CAMERA[1],
+  //         z: POSITIONS.DEFAULT_CAMERA[2],
+  //       },
+  //       1000
+  //     )
+  //     .start();
+  //   new TWEEN.Tween(camera.rotation)
+  //     .to(
+  //       {
+  //         x: ROTATIONS.DEFAULT_CAMERA[0],
+  //         y: ROTATIONS.DEFAULT_CAMERA[1],
+  //         z: ROTATIONS.DEFAULT_CAMERA[2],
+  //       },
+  //       1000
+  //     )
+  //     .start();
+  // };
+  //
   return (
     <group
       onClick={(e) => {
         e.stopPropagation();
         handleFocus();
       }}
-      onPointerMissed={handleUnfocus}
     >
       {children}
     </group>

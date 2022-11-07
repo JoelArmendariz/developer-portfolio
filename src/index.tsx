@@ -1,15 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Canvas } from "@react-three/fiber";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { POSITIONS, ROTATIONS } from "./types/constants";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <div className="App">
+      <Canvas
+        shadows
+        camera={{
+          rotation: ROTATIONS.DEFAULT_CAMERA,
+          position: POSITIONS.DEFAULT_CAMERA,
+        }}
+      >
+        <App />
+      </Canvas>
+    </div>
   </React.StrictMode>
 );
 
