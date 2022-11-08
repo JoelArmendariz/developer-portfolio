@@ -1,12 +1,18 @@
 import { useCallback, useState } from "react";
 import * as TWEEN from "@tweenjs/tween.js";
-import { POSITIONS, ROTATIONS, ZoomDefaults } from "../types/constants";
-import { Objects } from "../context/Zoom/ZoomContext";
-import { useFrame } from "@react-three/fiber";
+import {
+  POSITIONS,
+  ROTATIONS,
+  ZoomDefaults,
+  Objects,
+} from "../types/constants";
+import { useFrame, useThree } from "@react-three/fiber";
 
-const useZoom = (camera: any) => {
+const useZoom = () => {
+  const camera = useThree((state) => state.camera);
   const [showOrbitalControls, setShowOrbitalControls] = useState(true);
   const [activeObject, setActiveObject] = useState(Objects.NONE);
+
   useFrame(() => {
     TWEEN.update();
   });
@@ -39,6 +45,7 @@ const useZoom = (camera: any) => {
   );
 
   const handleUnzoom = useCallback(() => {
+    if (activeObject === Objects.NONE) return;
     setActiveObject(Objects.NONE);
     setShowOrbitalControls?.(true);
     new TWEEN.Tween(camera.position)
@@ -61,7 +68,7 @@ const useZoom = (camera: any) => {
         1000
       )
       .start();
-  }, [camera.position, camera.rotation]);
+  }, [camera.position, camera.rotation, activeObject]);
 
   return {
     activeObject,

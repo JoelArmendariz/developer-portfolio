@@ -1,5 +1,4 @@
 import "./App.css";
-import { useThree } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
 
 import Desk from "./components/Desk";
@@ -13,8 +12,8 @@ import Guitar from "./components/Guitar";
 import useZoom from "./hooks/useZoom";
 
 function App() {
-  const camera = useThree((state) => state.camera);
-  const { showOrbitalControls, handleZoom, handleUnzoom } = useZoom(camera);
+  const { showOrbitalControls, handleZoom, handleUnzoom, activeObject } =
+    useZoom();
 
   return (
     <>
@@ -49,6 +48,7 @@ function App() {
         />
         <Phone position={[-1.2, 0.03, 0]} scale={0.2} />
         <Monitor
+          activeObject={activeObject}
           handleZoom={handleZoom}
           scale={0.003}
           rotation={[0, -Math.PI / 2, 0]}
@@ -62,6 +62,7 @@ function App() {
         />
         <TablePlant scale={0.25} position={[3.15, 0.1, -1.75]} />
         <Guitar
+          handleZoom={handleZoom}
           scale={5}
           position={[-3.75, 0.7, -0.5]}
           rotation={[0, -Math.PI / 2, 0]}

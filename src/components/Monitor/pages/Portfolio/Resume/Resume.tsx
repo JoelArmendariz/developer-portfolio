@@ -1,4 +1,6 @@
 import ResumeSection from "./ResumeSections";
+import MouseIcon from "@mui/icons-material/Mouse";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 const sections = [
   {
@@ -45,11 +47,45 @@ export default function Resume() {
         textAlign: "start",
         height: "100%",
         width: "100%",
-        backgroundColor: "#e1e3ee",
+        backgroundColor: "26262d",
         padding: "0 2rem",
         overflow: "scroll",
       }}
     >
+      <div
+        style={{
+          height: "100%",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <span
+          style={{
+            marginTop: "6rem",
+            fontFamily: "Roboto Mono",
+            textTransform: "uppercase",
+            letterSpacing: "0.04em",
+            fontSize: "68px",
+            color: "#f0f0f0",
+            userSelect: "none",
+          }}
+        >
+          Resume
+        </span>
+        <div
+          style={{
+            marginTop: "6rem",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <MouseIcon style={{ color: "#a2a2a6" }} />
+          <ArrowDropDownIcon style={{ color: "#a2a2a6" }} />
+        </div>
+      </div>
       <h1>Joel Armendariz</h1>
       <h5>EXPERIENCE</h5>
       {sections.map((section) => (

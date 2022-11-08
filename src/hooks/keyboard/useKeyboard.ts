@@ -99,7 +99,6 @@ const useKeyboard = () => {
       Keys.keyL,
       Keys.keyD,
     ];
-
     let keyIndex = 0;
 
     const typingInterval = setInterval(() => {

@@ -1,6 +1,7 @@
 export enum MonitorPages {
   landingPage,
   resume,
+  portfolio,
   typingTest,
   other,
 }

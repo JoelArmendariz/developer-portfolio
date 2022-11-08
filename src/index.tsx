@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Canvas } from "@react-three/fiber";
-import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { POSITIONS, ROTATIONS } from "./types/constants";
+import "./index.css";
+import "@fontsource/roboto-mono";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

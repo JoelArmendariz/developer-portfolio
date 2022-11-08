@@ -1,8 +1,13 @@
 import { useState } from "react";
 import { Html, useGLTF } from "@react-three/drei";
 import MonitorContent from "./MonitorContent";
+import { Objects } from "../../types/constants";
+import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
+import FullscreenIcon from "@mui/icons-material/Fullscreen";
+import FullscreenExitIcon from "@mui/icons-material/FullscreenExit";
+import IconButton from "@mui/material/IconButton";
 
-export default function Monitor({ handleZoom, ...props }: any) {
+export default function Monitor({ activeObject, handleZoom, ...props }: any) {
   const { nodes, materials }: { nodes: any; materials: any } = useGLTF(
     "/models/monitor.glb"
   );
@@ -50,7 +55,10 @@ export default function Monitor({ handleZoom, ...props }: any) {
                     transform
                     occlude
                   >
-                    <MonitorContent handleZoom={handleZoom} />
+                    <MonitorContent
+                      activeObject={activeObject}
+                      handleZoom={handleZoom}
+                    />
                   </Html>
                 </>
               ) : null}
@@ -60,20 +68,44 @@ export default function Monitor({ handleZoom, ...props }: any) {
                 transform
                 occlude
               >
-                <button
+                <IconButton
                   onClick={(e) => {
                     e.stopPropagation();
                     setIsOn(!isOn);
                   }}
+                  size="large"
                   style={{
-                    height: "3rem",
+                    color: "#e1e3ee",
                     position: "absolute",
-                    left: "33rem",
                     top: "15rem",
+                    left: "33rem",
                   }}
                 >
-                  on/off
-                </button>
+                  <PowerSettingsNewIcon />
+                </IconButton>
+                <IconButton
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (activeObject === Objects.MONITOR_FULLSCREEN) {
+                      handleZoom(Objects.MONITOR);
+                    } else {
+                      handleZoom(Objects.MONITOR_FULLSCREEN);
+                    }
+                  }}
+                  size="large"
+                  style={{
+                    color: "#e1e3ee",
+                    position: "absolute",
+                    top: "15rem",
+                    left: "31rem",
+                  }}
+                >
+                  {activeObject === Objects.MONITOR_FULLSCREEN ? (
+                    <FullscreenExitIcon />
+                  ) : (
+                    <FullscreenIcon />
+                  )}
+                </IconButton>
               </Html>
               <mesh
                 name="monitor"
