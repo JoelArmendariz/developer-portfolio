@@ -14,7 +14,7 @@ export default function Name() {
           userSelect: "none",
         }}
       >
-        I'm Joel Armendariz
+        Joel Armendariz
       </span>
       <span
         style={{
