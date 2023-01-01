@@ -73,7 +73,7 @@ export default function Timeline() {
             <TimelineConnector />
           </TimelineSeparator>
           <TimelineContent sx={{ py: "12px", px: 2 }}>
-            <Typography color="#CCCCCF" variant="h6" component="span">
+            <Typography color="#cccccf" variant="h6" component="span">
               {title}
             </Typography>
             {bullets.map((bullet) => (

@@ -30,7 +30,6 @@ export default function Header({
       <HeaderButton onClick={() => selectTab(Tabs.home)} label="Home" />
       <HeaderButton onClick={() => selectTab(Tabs.resume)} label="Resume" />
       <HeaderButton onClick={() => selectTab(Tabs.about)} label="About" />
-      <HeaderButton onClick={() => selectTab(Tabs.contact)} label="Contact" />
     </div>
   );
 }
